@@ -1,0 +1,61 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+
+using namespace std;
+
+int main()
+{
+    string fileName;
+    ifstream inFile;
+    ofstream outFile;
+    int num;
+    int FIFOnum[30];
+    int LRUnum[30];
+    int OPTnum[30];
+
+    ofstream outFile1("outputFIFO.txt");
+    ofstream outFile2("outputLRU.txt");
+    ofstream outFile3("outputOPT.txt");
+
+    for(int i=1; i<31; i++)
+    {
+        fileName = "./myData/simdata-"+to_string(i)+".txt";
+        inFile.open(fileName);
+        if(inFile)//open successfully
+        {
+            while(inFile >> num)
+            {
+                FIFOnum[i-1]=num;
+
+            while(inFile >> num)
+            {
+                LRUnum[i-1]=num;
+
+            while(inFile >> num)
+            {
+                OPTnum[i-1]=num;
+            }
+            }}
+            inFile.close();
+        }
+        else
+            cout<<"\nError opening file: "<< fileName;
+    }
+
+   for(int i=0; i<30; i++)
+   {
+       outFile1<<FIFOnum[i];
+       outFile1<<endl;
+       outFile2<<LRUnum[i];
+       outFile2<<endl;
+       outFile3<<OPTnum[i];
+       outFile3<<endl;
+   }
+    outFile1.close();
+    outFile2.close();
+    outFile3.close();
+
+    return 0;
+}
